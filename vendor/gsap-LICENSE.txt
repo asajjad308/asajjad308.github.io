@@ -1,0 +1,12 @@
+GSAP 3.13.0 — https://gsap.com
+Copyright 2025, GreenSock. All rights reserved.
+
+GSAP is distributed under the GreenSock Standard "No Charge" license, which permits
+free use — including commercial use — of the core and all plugins (ScrollTrigger and
+SplitText included) in websites and applications where end users are not charged for
+GSAP's functionality itself.
+
+Full license terms: https://gsap.com/community/standard-license/
+
+The copyright notice is retained in the header of each distributed file in this
+directory: gsap.min.js, ScrollTrigger.min.js, SplitText.min.js.
