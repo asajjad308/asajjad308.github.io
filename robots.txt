@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asajjad308.github.io/sitemap.xml
