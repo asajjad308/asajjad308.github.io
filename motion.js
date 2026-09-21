@@ -129,8 +129,8 @@
       $$('[data-split="lines"]').forEach(el => {
         const s = splitLines(el);
         gsap.from(s ? s.lines : el, {
-          yPercent: 108, opacity: 0, duration: 1.15, stagger: .1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%' }
+          yPercent: 108, opacity: 0, duration: 1.15, stagger: .1, ease: 'expo.out', clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true }
         });
       });
 
@@ -138,8 +138,8 @@
 
       $$('.reveal').forEach(el => {
         gsap.from(el, {
-          y: 34, opacity: 0, duration: 1.1,
-          scrollTrigger: { trigger: el, start: 'top 90%' }
+          y: 34, opacity: 0, duration: 1.1, clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true }
         });
       });
 
@@ -181,8 +181,8 @@
       cleanups.push(() => document.removeEventListener('portfolio:drag', onDrag));
 
       gsap.from('.project-showcase', {
-        y: 60, opacity: 0, duration: 1.2,
-        scrollTrigger: { trigger: '.project-showcase', start: 'top 88%' }
+        y: 60, opacity: 0, duration: 1.2, clearProps: 'transform',
+        scrollTrigger: { trigger: '.project-showcase', start: 'top 88%', once: true }
       });
 
       /* --- the journey: a pinned horizontal timeline on wide screens --- */
@@ -230,11 +230,13 @@
 
       mm.add('(max-width: 899px)', () => {
         $$('.milestone').forEach(card => {
-          gsap.from(card, { y: 40, opacity: 0, duration: 1, scrollTrigger: { trigger: card, start: 'top 90%' } });
+          gsap.from(card, { y: 40, opacity: 0, duration: 1, clearProps: 'transform', scrollTrigger: { trigger: card, start: 'top 90%', once: true } });
         });
       });
 
-      /* --- open source: counters and staggered package rows --- */
+      /* --- open source: counters and staggered package rows ---
+         clearProps matters here: a percentage offset left behind as an inline
+         pixel transform strands the rows over the note that follows them. --- */
 
       $$('[data-count]').forEach(el => {
         const target = parseFloat(el.dataset.count);
@@ -242,34 +244,34 @@
         const obj = { v: 0 };
         gsap.to(obj, {
           v: target, duration: 1.8, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 92%' },
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true },
           onUpdate: () => { el.textContent = Math.round(obj.v) + suffix; },
           onComplete: () => { el.textContent = target + suffix; }
         });
       });
 
       gsap.from('.package', {
-        yPercent: 60, opacity: 0, duration: 1, stagger: .12,
-        scrollTrigger: { trigger: '.package-list', start: 'top 85%' }
+        y: 70, opacity: 0, duration: 1, stagger: .12, clearProps: 'transform',
+        scrollTrigger: { trigger: '.package-list', start: 'top 85%', once: true }
       });
 
       /* --- skills: a quick cascade, no two cards landing together --- */
 
       gsap.from('.skill-card', {
-        y: 40, opacity: 0, scale: .96, duration: .9, stagger: { each: .07, from: 'start' },
-        scrollTrigger: { trigger: '.skills', start: 'top 85%' }
+        y: 40, opacity: 0, scale: .96, duration: .9, stagger: { each: .07, from: 'start' }, clearProps: 'transform',
+        scrollTrigger: { trigger: '.skills', start: 'top 85%', once: true }
       });
 
       gsap.from('.experience > div', {
-        x: 30, opacity: 0, duration: .9, stagger: .1,
-        scrollTrigger: { trigger: '.experience', start: 'top 85%' }
+        x: 30, opacity: 0, duration: .9, stagger: .1, clearProps: 'transform',
+        scrollTrigger: { trigger: '.experience', start: 'top 85%', once: true }
       });
 
       /* --- contact: the closing line arrives last --- */
 
       gsap.from('.contact-bottom > *', {
-        y: 24, opacity: 0, duration: .9, stagger: .1,
-        scrollTrigger: { trigger: '.contact-bottom', start: 'top 92%' }
+        y: 24, opacity: 0, duration: .9, stagger: .1, clearProps: 'transform',
+        scrollTrigger: { trigger: '.contact-bottom', start: 'top 92%', once: true }
       });
 
       /* --- global: the whole page skews very slightly with scroll speed --- */

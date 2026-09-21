@@ -95,3 +95,31 @@ html.motion-off .loader{display:none}
   .marquee-track{font-size:13px;gap:26px;padding-right:26px}
   .loader-name{letter-spacing:-2px}
 }
+
+/* ================================================================
+   SOCIAL RAIL — LinkedIn / NuGet / Email, reachable from anywhere.
+   A vertical rail in the left margin on desktop; a floating bar on
+   smaller screens. Colours invert over the light open-source band.
+   ================================================================ */
+.social-rail{position:fixed;z-index:90;display:flex;pointer-events:none}
+.social-rail a{pointer-events:auto;font-family:'Space Grotesk',sans-serif;font-weight:600;text-transform:uppercase;text-decoration:none;transition:color .3s,background .3s}
+
+@media(min-width:1180px){
+  .social-rail{left:0;top:50%;transform:translateY(-50%);flex-direction:column;align-items:center;gap:26px;width:max(46px,calc((100vw - min(1320px,88vw))/2))}
+  .social-rail a{writing-mode:vertical-rl;font-size:10.5px;letter-spacing:2.6px;color:#8c9a7d}
+  .social-rail a:hover,.social-rail a:focus-visible{color:var(--lime)}
+  .social-rail:after{content:'';width:1px;height:64px;background:linear-gradient(#4a5440,transparent)}
+  .social-rail.on-light a{color:#5c6654}
+  .social-rail.on-light a:hover,.social-rail.on-light a:focus-visible{color:#1d2415}
+  .social-rail.on-light:after{background:linear-gradient(#aab29e,transparent)}
+}
+
+@media(max-width:1179px){
+  .social-rail{left:50%;bottom:14px;transform:translateX(-50%);gap:4px;padding:5px;border:1px solid #3a4233;border-radius:40px;background:rgba(17,20,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .social-rail a{font-size:11.5px;letter-spacing:1.5px;color:#c8cfbe;padding:9px 16px;border-radius:30px}
+  .social-rail a:hover,.social-rail a:focus-visible{background:var(--lime);color:#17210c}
+  footer.wrap{padding-bottom:94px}
+}
+
+/* The curtain owns the screen while it is up. */
+html.is-loading .social-rail{opacity:0}

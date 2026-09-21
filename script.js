@@ -127,6 +127,19 @@
   }, { passive: true });
   progressUpdate();
 
+  /* ---------- social rail contrast ---------- */
+
+  // The rail is fixed, so it passes over the light open-source band. Flip its
+  // colours when that band crosses the rail's own line, independent of GSAP.
+  const rail = document.querySelector('.social-rail');
+  const lightBand = document.querySelector('.open-section');
+  if (rail && lightBand && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      ([entry]) => rail.classList.toggle('on-light', entry.isIntersecting),
+      { rootMargin: '-50% 0px -50% 0px' }
+    ).observe(lightBand);
+  }
+
   /* ---------- copy email ---------- */
 
   const button = document.getElementById('copy-email');
