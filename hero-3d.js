@@ -1,17 +1,44 @@
-import * as THREE from './vendor/three.module.min.js';
-
 /* A breathing particle field wrapped in wireframe structure: visual identity,
    never a prerequisite to reading. Falls back to the static mark on any failure. */
 
 const canvas = document.getElementById('hero-canvas');
 const host = document.querySelector('.hero-sculpture');
 
-let renderer;
-try {
-  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
-} catch { /* Preserve the static fallback on devices without WebGL. */ }
+/* Three.js is ~180KB gzipped — two thirds of the page — and it only ever draws
+   decoration. So nobody fetches it until the field is certain to run: motion has
+   to be wanted, WebGL has to exist, and first paint has to be out of the way. */
 
-if (renderer) {
+const motionWanted = () =>
+  document.documentElement.dataset.motion !== 'off' &&
+  !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function hasWebGL() {
+  try {
+    const probe = document.createElement('canvas');
+    return !!(probe.getContext('webgl2') || probe.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
+
+function whenIdle(fn) {
+  if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 2000 });
+  else addEventListener('load', () => setTimeout(fn, 200), { once: true });
+}
+
+let booted = false;
+
+async function boot() {
+  if (booted || !canvas || !host || !hasWebGL()) return;
+  booted = true;
+
+  let THREE, renderer;
+  try {
+    THREE = await import('./vendor/three.module.min.js');
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+  } catch {
+    return; /* A failed fetch or a refused context both leave the static mark up. */
+  }
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(37, 1, .1, 100);
   camera.position.z = 6.8;
@@ -194,4 +221,17 @@ if (renderer) {
   size();
   host.classList.add('ready');
   sync();
+}
+
+/* Motion wanted: load once the page goes quiet. Motion off: hold the static mark,
+   but honour a later resume by loading at that point instead. */
+if (motionWanted()) {
+  whenIdle(boot);
+} else {
+  document.addEventListener('portfolio:motion', function resume(e) {
+    if (e.detail && !e.detail.paused) {
+      document.removeEventListener('portfolio:motion', resume);
+      whenIdle(boot);
+    }
+  });
 }
