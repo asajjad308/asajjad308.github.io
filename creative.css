@@ -27,7 +27,7 @@ html.is-loading .loader{display:grid}
 .cursor-ring{width:36px;height:36px;border:1px solid #93a87a;display:grid;place-items:center;transition:width .35s cubic-bezier(.2,.8,.2,1),height .35s cubic-bezier(.2,.8,.2,1),background .3s,border-color .3s,opacity .3s}
 .cursor-dot{width:6px;height:6px;background:var(--lime)}
 .cursor.is-hot .cursor-ring{width:58px;height:58px;border-color:var(--lime);background:rgba(213,255,99,.09)}
-.cursor.is-drag .cursor-ring{width:88px;height:88px;background:var(--lime);border-color:var(--lime)}
+.cursor.is-drag .cursor-ring{width:72px;height:72px;background:rgba(213,255,99,.82);border-color:var(--lime)}
 .cursor.is-drag .cursor-dot{opacity:0}
 .cursor.is-down .cursor-ring{border-color:var(--lime);background:rgba(213,255,99,.2)}
 .cursor-text{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;color:#17210c;opacity:0;transition:opacity .25s}

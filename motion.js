@@ -335,8 +335,10 @@
     addEventListener('pointerleave', () => el.classList.remove('is-live'));
 
     document.addEventListener('pointerover', e => {
-      const drag = e.target.closest('[data-cursor="drag"]');
-      const hot = e.target.closest('a,button,summary,.embla');
+      // A real target always wins over the drag affordance, so the blob never
+      // covers the link the visitor is reaching for.
+      const hot = e.target.closest('a,button,summary');
+      const drag = !hot && e.target.closest('[data-cursor="drag"]');
       el.classList.toggle('is-hot', !!hot);
       el.classList.toggle('is-drag', !!drag);
       label.textContent = drag ? 'DRAG' : '';
