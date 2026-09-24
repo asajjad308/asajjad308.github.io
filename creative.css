@@ -123,3 +123,7 @@ html.motion-off .loader{display:none}
 
 /* The curtain owns the screen while it is up. */
 html.is-loading .social-rail{opacity:0}
+
+
+/* Personal introduction: native controls, no autoplay or up-front video download. */
+.intro-film{padding:45px 0 70px}.intro-film-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:25px}.intro-film-heading h2{font-size:clamp(30px,4vw,48px);margin-top:13px}.intro-film-heading p{color:var(--muted);font-size:15px;margin:0}.intro-film-player{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#080b0d;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 70px #0003}.intro-film-caption{color:var(--muted);font-size:13px;margin:15px 0 0;max-width:760px}.intro-watch{display:inline-flex;align-items:center;gap:14px;font-size:14px;color:var(--lime);justify-self:start}.intro-watch:hover{text-decoration:underline}.intro-watch:focus-visible,.intro-film-player:focus-visible{outline:2px solid var(--lime);outline-offset:5px}@media(max-width:700px){.intro-film{padding:25px 0 42px}.intro-film-heading{display:block}.intro-film-heading p{margin-top:15px;font-size:14px}.intro-film-player{border-radius:7px}.intro-film-caption{font-size:12px}}

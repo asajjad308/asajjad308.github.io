@@ -27,7 +27,7 @@
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d5ff63'/%3E%3Ctext x='8' y='43' font-family='Arial' font-weight='700' font-size='32' fill='%23111311'%3ESA%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
 <link href="style.css" rel="stylesheet"/>
 <link href="vendor/lenis.css" rel="stylesheet"/>
-<link href="creative.css" rel="stylesheet"/>
+<link href="creative.css?v=intro-video-20260924" rel="stylesheet"/>
 <script>
 /* The intro curtain only ever exists when scripting is live, motion is wanted, and it
    is the first visit of the session. A timer clears it even if a library fails to load. */
@@ -152,12 +152,22 @@
   <div class="hero-bottom">
     <p>I’m Sajjad, a .NET &amp; AI engineer. I turn complex workflows into reliable products — from connected platforms to practical AI and automation.</p>
     <a class="round-link magnetic" href="#work"><span>Explore my work</span><span class="circle">↓</span></a>
+    <a class="intro-watch" href="#intro-video">Watch my intro <span aria-hidden="true">▷</span></a>
     <a class="hero-cta magnetic" href="mailto:asajjad308@gmail.com">Discuss your project <span>↗</span></a>
   </div>
   <div class="hero-foot">
     <span>ENGINEERED WITH PURPOSE.</span>
     <span>BUILT FOR THE REAL WORLD.</span>
   </div>
+</section>
+
+<section class="intro-film wrap" id="intro-video" aria-labelledby="intro-film-title">
+  <div class="intro-film-heading"><div><span class="kicker">MEET THE BUILDER</span><h2 id="intro-film-title">Ideas into impact.</h2></div><p>A short AI-generated introduction.<br>Build. Automate. Scale.</p></div>
+  <video class="intro-film-player" controls playsinline preload="none" poster="assets/intro-poster.jpg" width="1280" height="720" aria-label="Sajjad Ali — AI-native engineer and software architect" aria-describedby="intro-film-description">
+    <source src="assets/sajjad-intro.mp4" type="video/mp4">
+    Your browser does not support embedded video. <a href="assets/sajjad-intro.mp4">Watch the introduction.</a>
+  </video>
+  <p id="intro-film-description" class="intro-film-caption">Sajjad Ali · AI-native engineer &amp; software architect. Building intelligent systems that automate work and unlock human potential.</p>
 </section>
 
 <div class="expertise-strip" aria-label="Areas of expertise">
@@ -473,3 +483,4 @@
 <script src="hero-3d.js" type="module"></script>
 </body>
 </html>
+
